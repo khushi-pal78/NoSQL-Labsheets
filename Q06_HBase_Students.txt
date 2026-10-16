@@ -1,0 +1,47 @@
+Question 6 — HBase Students table
+
+Run the following in the HBase shell. The table has two column families: personal and academic.
+
+# Create table
+create 'Students', 'personal', 'academic'
+
+# Insert at least five student records
+put 'Students', '501', 'personal:Name', 'Aarav'
+put 'Students', '501', 'academic:Course', 'BCA'
+put 'Students', '501', 'academic:Semester', '2'
+put 'Students', '501', 'academic:Marks', '82'
+
+put 'Students', '502', 'personal:Name', 'Diya'
+put 'Students', '502', 'academic:Course', 'BCA'
+put 'Students', '502', 'academic:Semester', '2'
+put 'Students', '502', 'academic:Marks', '91'
+
+put 'Students', '503', 'personal:Name', 'Kabir'
+put 'Students', '503', 'academic:Course', 'BTech'
+put 'Students', '503', 'academic:Semester', '1'
+put 'Students', '503', 'academic:Marks', '78'
+
+put 'Students', '504', 'personal:Name', 'Meera'
+put 'Students', '504', 'academic:Course', 'BBA'
+put 'Students', '504', 'academic:Semester', '3'
+put 'Students', '504', 'academic:Marks', '86'
+
+put 'Students', '505', 'personal:Name', 'Ishaan'
+put 'Students', '505', 'academic:Course', 'BCA'
+put 'Students', '505', 'academic:Semester', '4'
+put 'Students', '505', 'academic:Marks', '88'
+
+# 1. Retrieve a particular student's details
+get 'Students', '501'
+
+# 2. Update student information (put updates/adds a cell value)
+put 'Students', '501', 'academic:Marks', '85'
+
+# 3. Display all records
+scan 'Students'
+
+# 4. Delete a student record
+deleteall 'Students', '505'
+
+# Result
+# Student information was stored in HBase using row keys and column families.

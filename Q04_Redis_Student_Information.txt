@@ -1,0 +1,28 @@
+Question 4 — Student information system using Redis
+
+Run these commands in redis-cli. Each student ID is the key and the student name is the value.
+
+1. Insert at least five students:
+SET 301 "Aarav"
+SET 302 "Diya"
+SET 303 "Kabir"
+SET 304 "Meera"
+SET 305 "Ishaan"
+
+2. Retrieve a student by key:
+GET 302
+Expected value: "Diya"
+
+3. Update a student's value:
+SET 302 "Diya Sharma"
+GET 302
+
+4. Delete a student:
+DEL 305
+
+5. Display all available keys:
+KEYS *
+
+Note: `KEYS *` is acceptable for this small lab dataset. Avoid it on large production databases because it can block Redis while scanning keys.
+
+Result: Student IDs were used as keys, and names were stored as values.
