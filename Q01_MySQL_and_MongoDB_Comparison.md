@@ -1,4 +1,4 @@
-# Question 1 — Student data in MySQL and MongoDB
+labsheet-2# Question 1 — Student data in MySQL and MongoDB
 
 ## Aim
 Create the same student dataset in an RDBMS (MySQL) and a NoSQL document database (MongoDB), then compare them.
