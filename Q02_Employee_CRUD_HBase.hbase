@@ -1,0 +1,35 @@
+# Q2. Employee CRUD operations
+create 'Employee', 'personal', 'job'
+
+# INSERT / CREATE records
+put 'Employee', 'E101', 'personal:name', 'Aman'
+put 'Employee', 'E101', 'personal:city', 'Roorkee'
+put 'Employee', 'E101', 'job:department', 'IT'
+put 'Employee', 'E101', 'job:salary', '30000'
+
+put 'Employee', 'E102', 'personal:name', 'Riya'
+put 'Employee', 'E102', 'personal:city', 'Dehradun'
+put 'Employee', 'E102', 'job:department', 'HR'
+put 'Employee', 'E102', 'job:salary', '35000'
+
+# READ one row
+get 'Employee', 'E101'
+
+# READ all rows
+scan 'Employee'
+
+# UPDATE: put the same cell with a new value
+put 'Employee', 'E101', 'job:salary', '33000'
+get 'Employee', 'E101'
+
+# DELETE one cell
+delete 'Employee', 'E102', 'personal:city'
+get 'Employee', 'E102'
+
+# DELETE the complete row
+deleteall 'Employee', 'E102'
+scan 'Employee'
+
+# Optional: remove the whole table (run only if no longer needed)
+# disable 'Employee'
+# drop 'Employee'

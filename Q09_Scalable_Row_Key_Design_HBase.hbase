@@ -1,0 +1,21 @@
+# Q9. Large-scale application and scalable row-key design
+# Example: user activity records. Avoid sequential row keys that can hotspot one region.
+# Prefix the user identifier with a deterministic hash bucket (00-0f).
+create 'UserActivity', 'activity'
+
+# Example row keys use bucket + userId + reverse timestamp.
+# Reverse timestamp = Long.MAX_VALUE - event timestamp (conceptual example values below).
+# Hash buckets spread writes across regions; user/time parts help identify related records.
+put 'UserActivity', '03#U100#9999999999999', 'activity:type', 'LOGIN'
+put 'UserActivity', '03#U100#9999999999998', 'activity:type', 'PAGE_VIEW'
+put 'UserActivity', '0a#U205#9999999999997', 'activity:type', 'PURCHASE'
+put 'UserActivity', '0f#U309#9999999999996', 'activity:type', 'LOGOUT'
+put 'UserActivity', '07#U412#9999999999995', 'activity:type', 'LOGIN'
+
+scan 'UserActivity'
+
+# Design explanation:
+# - The bucket prefix distributes writes among regions and reduces hotspot risk.
+# - User ID groups a user's records.
+# - Reverse timestamp can place newest events first in lexicographic scans.
+# - Choose pre-split region boundaries that match the bucket prefixes in a real deployment.

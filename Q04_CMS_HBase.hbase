@@ -1,0 +1,33 @@
+# Q4. Content Management System
+create 'CMS', 'content', 'author', 'metadata'
+
+# Insert content record C101
+put 'CMS', 'C101', 'content:title', 'Introduction to HBase'
+put 'CMS', 'C101', 'content:body', 'HBase is a distributed column-family database.'
+put 'CMS', 'C101', 'author:name', 'Aman'
+put 'CMS', 'C101', 'author:email', 'aman@example.com'
+put 'CMS', 'C101', 'metadata:category', 'Technology'
+put 'CMS', 'C101', 'metadata:status', 'draft'
+
+# Insert another record
+put 'CMS', 'C102', 'content:title', 'NoSQL Basics'
+put 'CMS', 'C102', 'content:body', 'An introduction to NoSQL databases.'
+put 'CMS', 'C102', 'author:name', 'Riya'
+put 'CMS', 'C102', 'metadata:category', 'Education'
+put 'CMS', 'C102', 'metadata:status', 'published'
+
+# Retrieve a content record
+get 'CMS', 'C101'
+
+# Update title and publication status
+put 'CMS', 'C101', 'content:title', 'Getting Started with HBase'
+put 'CMS', 'C101', 'metadata:status', 'published'
+get 'CMS', 'C101'
+
+# Delete only the body cell
+delete 'CMS', 'C102', 'content:body'
+get 'CMS', 'C102'
+
+# Delete complete content row C102
+deleteall 'CMS', 'C102'
+scan 'CMS'

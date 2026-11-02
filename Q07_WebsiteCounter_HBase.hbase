@@ -1,0 +1,19 @@
+# Q7. WebsiteCounter page-view counters
+create 'WebsiteCounter', 'views'
+
+# Increment counters (values are stored as 8-byte counters)
+incr 'WebsiteCounter', 'home', 'views:count', 1
+incr 'WebsiteCounter', 'home', 'views:count', 1
+incr 'WebsiteCounter', 'home', 'views:count', 1
+
+incr 'WebsiteCounter', 'about', 'views:count', 1
+incr 'WebsiteCounter', 'about', 'views:count', 1
+
+incr 'WebsiteCounter', 'courses', 'views:count', 1
+
+# Display counter values
+get_counter 'WebsiteCounter', 'home', 'views:count'
+get_counter 'WebsiteCounter', 'about', 'views:count'
+get_counter 'WebsiteCounter', 'courses', 'views:count'
+
+scan 'WebsiteCounter'

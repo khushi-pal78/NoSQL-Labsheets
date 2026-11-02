@@ -1,0 +1,25 @@
+# Q6. Column-family model and qualifiers
+create 'Company', 'personal', 'work', 'contact'
+
+# Same row can have different qualifiers within each family
+put 'Company', 'EMP001', 'personal:first_name', 'Aman'
+put 'Company', 'EMP001', 'personal:last_name', 'Pal'
+put 'Company', 'EMP001', 'work:department', 'IT'
+put 'Company', 'EMP001', 'work:designation', 'Developer'
+put 'Company', 'EMP001', 'contact:email', 'aman@example.com'
+put 'Company', 'EMP001', 'contact:phone', '9999999999'
+
+# A second row can have a different set of qualifiers
+put 'Company', 'EMP002', 'personal:first_name', 'Riya'
+put 'Company', 'EMP002', 'work:department', 'HR'
+put 'Company', 'EMP002', 'contact:email', 'riya@example.com'
+
+scan 'Company'
+get 'Company', 'EMP001'
+get 'Company', 'EMP002'
+
+# Explain:
+# - personal, work and contact are column families defined at table creation.
+# - first_name, department, email, etc. are qualifiers inside those families.
+# - Rows may have different qualifiers; missing cells do not need placeholder values.
+# - HBase stores cells identified by row key + family + qualifier + timestamp.

@@ -1,0 +1,22 @@
+# Q8. Expiring user/session data with TTL
+# TTL is configured in seconds on the column family.
+# Example: 60 seconds for a short classroom demonstration.
+create 'UserSessions', {NAME => 'session', TTL => 60}, {NAME => 'user', TTL => 60}
+
+# Insert session records
+put 'UserSessions', 'S001', 'session:token', 'TOKEN_A1'
+put 'UserSessions', 'S001', 'session:createdAt', '2026-11-02T09:00:00'
+put 'UserSessions', 'S001', 'user:userId', 'U101'
+
+put 'UserSessions', 'S002', 'session:token', 'TOKEN_B2'
+put 'UserSessions', 'S002', 'session:createdAt', '2026-11-02T09:01:00'
+put 'UserSessions', 'S002', 'user:userId', 'U102'
+
+# Read records before expiry
+scan 'UserSessions'
+
+# Wait longer than the TTL, then scan/get again.
+# Expired cells are no longer returned after cleanup/compaction makes expiry visible.
+# TTL expiration is not necessarily an immediate physical deletion.
+# For an easier practical demonstration, use a larger TTL and wait accordingly.
+describe 'UserSessions'

@@ -1,0 +1,32 @@
+# Q3. Event Logging System
+create 'EventLog', 'event', 'user', 'details'
+
+# Row key format: eventId (unique event identifier)
+put 'EventLog', 'EVT1001', 'event:timestamp', '2026-10-20T09:00:00'
+put 'EventLog', 'EVT1001', 'event:type', 'LOGIN'
+put 'EventLog', 'EVT1001', 'event:status', 'SUCCESS'
+put 'EventLog', 'EVT1001', 'user:userId', 'U101'
+put 'EventLog', 'EVT1001', 'user:username', 'aman'
+put 'EventLog', 'EVT1001', 'details:ip', '192.168.1.10'
+
+put 'EventLog', 'EVT1002', 'event:timestamp', '2026-10-20T09:05:00'
+put 'EventLog', 'EVT1002', 'event:type', 'LOGIN'
+put 'EventLog', 'EVT1002', 'event:status', 'FAILED'
+put 'EventLog', 'EVT1002', 'user:userId', 'U101'
+put 'EventLog', 'EVT1002', 'user:username', 'aman'
+put 'EventLog', 'EVT1002', 'details:ip', '192.168.1.10'
+
+put 'EventLog', 'EVT1003', 'event:timestamp', '2026-10-20T10:15:00'
+put 'EventLog', 'EVT1003', 'event:type', 'FILE_UPLOAD'
+put 'EventLog', 'EVT1003', 'event:status', 'SUCCESS'
+put 'EventLog', 'EVT1003', 'user:userId', 'U102'
+put 'EventLog', 'EVT1003', 'user:username', 'riya'
+
+# Retrieve a particular event by its row key
+get 'EventLog', 'EVT1002'
+
+# Display all event records
+scan 'EventLog'
+
+# Retrieve only the event family for one row
+get 'EventLog', 'EVT1001', {COLUMN => 'event'}
