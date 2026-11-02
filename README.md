@@ -1,26 +1,23 @@
-# BCA305P – NoSQL Database Design – Lab Sheet 4
+# MongoDB StudentDB CRUD – Lab Sheet Answers
 
-This archive contains one separate answer file for each of the 15 practical questions in the uploaded Lab Sheet 4.
+This ZIP contains 25 separate answer files, one for each practical question.
 
-## Contents
-- Q01–Q10: Apache HBase Shell practicals (`.hbase`) and setup/explanation notes (`.md`).
-- Q11–Q15: Apache Cassandra CQL practicals (`.cql`).
+## Files
+- Q01–Q21: MongoDB Shell (`mongosh`) commands in `.js` files.
+- Q22–Q24: MongoDB Compass guide, Shell/Compass comparison, and MongoDB-vs-SQL comparison in `.md` files.
+- Q25: Laboratory report template in `.md` format.
 
-## Running HBase files
-1. Run HBase in a supported Linux environment (for example Ubuntu/WSL2 or a Linux VM).
-2. Start HBase, then open `hbase shell`.
-3. Copy and run the commands from the required `.hbase` file in the HBase shell.
-4. For Q1, see the installation and configuration guide in `Q01_Student_Table_HBase.md`.
-5. Q10's region distribution requires a distributed HBase cluster with multiple RegionServers to demonstrate actual server-level distribution.
+## How to run
+1. Connect to your MongoDB Atlas cluster or local MongoDB deployment using `mongosh`.
+2. Run the commands in each `.js` file in order, one question at a time.
+3. Commands beginning with `use StudentDB` are entered in mongosh.
+4. Q20 intentionally drops the StudentDB database. Run Q20 only after completing earlier questions and when you are ready to delete the lab database.
+5. Q21 recreates the database with fresh sample data.
+6. For Q22, follow the manual MongoDB Compass steps in its Markdown file.
+7. Fill Q25 with your own details, actual command outputs and screenshots.
 
-## Running Cassandra files
-1. Start a Cassandra cluster and open `cqlsh`.
-2. Run the required `.cql` file in `cqlsh` (you can copy/paste its commands).
-3. Q11 uses a single-node-friendly replication factor of 1. For multi-node production/lab clusters, adjust replication factor.
-4. Q14's ONE/QUORUM/ALL comparison is meaningful only on a multi-node cluster with replication factor 3 in the configured datacenter. A single-node cluster cannot demonstrate replica failure trade-offs.
-
-## Important
-- The examples use sample names, dates and values. You may modify them for your practical record.
-- HBase and Cassandra commands are not SQL and must be run in their respective shells.
-- Run each question separately. Some scripts create tables and will fail if a table with the same name already exists; drop/cleanup only when safe.
-- The setup commands and version compatibility depend on the Java, HBase and Cassandra versions installed. Follow the official documentation for the exact release you use.
+## Important notes
+- MongoDB creates a database when data is first stored in it; `use StudentDB` alone only switches the current shell context.
+- If you run a file more than once, insert commands may create duplicate documents unless the collection is cleared first.
+- Q12 uses an update pipeline and requires a MongoDB version that supports update pipelines (MongoDB 4.2+). If unavailable, set Email values individually with `$set`.
+- Use the same MongoDB deployment in Compass and mongosh when comparing results.
